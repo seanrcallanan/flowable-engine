@@ -1,0 +1,20 @@
+{
+  "name": "flowable-ui-modeler",
+  "version": "6.4.2",
+  "scripts": {},
+  "license": "MIT",
+  "devDependencies": {
+
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "angular-formio": "4.2.3",
+    "@angular/upgrade": "8.2.9",
+    "@angular/core": "8.2.9",
+    "@angular/common": "8.2.9",
+    "@angular/forms": "8.2.9",
+    "@angular/router": "8.2.9"
+  }
+}

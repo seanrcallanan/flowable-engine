@@ -11,6 +11,8 @@
  * limitations under the License.
  */
 'use strict';
+// import FormBuilderComponent from '../node_modules/angular-formio/src/components/formbuilder/formbuilder.component'
+// var Upgrade = require('../node_modules/@angular/upgrade/bundles/upgrade.umd');
 
 var flowableModeler = angular.module('flowableModeler', [
   'ngCookies',
@@ -127,7 +129,7 @@ flowableModeler
         .when('/app-editor/:modelId', {
             templateUrl: appResourceRoot + 'views/app-definition-builder.html',
             controller: 'AppDefinitionBuilderController'
-        });
+        })
 
         if (FLOWABLE.CONFIG.appDefaultRoute) {
             $routeProvider.when('/', {
@@ -157,6 +159,10 @@ flowableModeler
         .determinePreferredLanguage();
 
   }])
+    // .directive(
+    //     'form-builder',
+    //     downgradeComponent({component: FormBuilderComponent})
+    // )
   .run(['$rootScope', '$timeout', '$modal', '$translate', '$location', '$http', '$window', 'appResourceRoot',
         function($rootScope, $timeout, $modal, $translate, $location, $http, $window, appResourceRoot) {
 
