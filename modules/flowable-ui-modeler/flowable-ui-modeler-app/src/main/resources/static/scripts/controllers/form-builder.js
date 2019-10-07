@@ -52,11 +52,113 @@ angular.module('flowableModeler')
             ];
 
             $scope.form = {
-            	name: '', 
+            	name: '',
             	key: '',
-            	description: '', 
+            	description: '',
             	version: 1
            	};
+
+            $rootScope.myForm = {
+                components: [{
+                    "input": true,
+                    "tableView": true,
+                    "inputType": "text",
+                    "inputMask": "",
+                    "label": "First Name",
+                    "key": "firstName",
+                    "placeholder": "Enter your first name",
+                    "prefix": "",
+                    "suffix": "",
+                    "multiple": false,
+                    "defaultValue": "",
+                    "protected": false,
+                    "unique": false,
+                    "persistent": true,
+                    "validate": {
+                        "required": false,
+                        "minLength": "",
+                        "maxLength": "",
+                        "pattern": "",
+                        "custom": "",
+                        "customPrivate": false
+                    },
+                    "conditional": {
+                        "show": false,
+                        "when": null,
+                        "eq": ""
+                    },
+                    "type": "textfield"
+                }, {
+                    "input": true,
+                    "tableView": true,
+                    "inputType": "text",
+                    "inputMask": "",
+                    "label": "Last Name",
+                    "key": "lastName",
+                    "placeholder": "Enter your last name",
+                    "prefix": "",
+                    "suffix": "",
+                    "multiple": false,
+                    "defaultValue": "",
+                    "protected": false,
+                    "unique": false,
+                    "persistent": true,
+                    "validate": {
+                        "required": false,
+                        "minLength": "",
+                        "maxLength": "",
+                        "pattern": "",
+                        "custom": "",
+                        "customPrivate": false
+                    },
+                    "conditional": {
+                        "show": false,
+                        "when": null,
+                        "eq": ""
+                    },
+                    "type": "textfield"
+                }, {
+                    "input": true,
+                    "tableView": true,
+                    "label": "Message",
+                    "key": "message",
+                    "placeholder": "What do you think?",
+                    "prefix": "",
+                    "suffix": "",
+                    "rows": 3,
+                    "multiple": false,
+                    "defaultValue": "",
+                    "protected": false,
+                    "persistent": true,
+                    "validate": {
+                        "required": false,
+                        "minLength": "",
+                        "maxLength": "",
+                        "pattern": "",
+                        "custom": ""
+                    },
+                    "type": "textarea",
+                    "conditional": {
+                        "show": false,
+                        "when": null,
+                        "eq": ""
+                    }
+                }, {
+                    type: 'button',
+                    theme: 'primary',
+                    disableOnInvalid: true,
+                    action: 'submit',
+                    block: false,
+                    rightIcon: '',
+                    leftIcon: '',
+                    size: 'md',
+                    key: 'submit',
+                    tableView: false,
+                    label: 'Submit',
+                    input: true
+                }],
+                display: 'form'
+            };
 
             $scope.formElements = [];
             $rootScope.currentOutcomes = [];
@@ -78,7 +180,7 @@ angular.module('flowableModeler')
             var lastDropArrayTarget = null;
 
             $scope.onFieldMoved = function (field, fieldArraySource) {
-            	
+
             };
 
 
@@ -112,10 +214,10 @@ angular.module('flowableModeler')
 
                 var fieldId = paletteElementOrField.type;
                 var fieldType;
-                
+
                 if (fieldId === 'radio-buttons' || fieldId === 'dropdown') {
                     fieldType = 'OptionFormField';
-                    
+
                 } else if (fieldId === 'expression') {
                     fieldType = 'ExpressionFormField';
                 }
@@ -130,7 +232,7 @@ angular.module('flowableModeler')
                 setFieldDragDropAttributes(field, 'newField');
 
                 if (fieldId === 'radio-buttons') {
-                    field.options = [{ 
+                    field.options = [{
                     	name: $translate.instant('FORM-BUILDER.COMPONENT.RADIO-BUTTON-DEFAULT')
                     }];
                 }
@@ -142,7 +244,7 @@ angular.module('flowableModeler')
                     field.value = field.options[0];
                     field.hasEmptyValue = true;
                 }
-                
+
                 return field;
             };
 
@@ -191,7 +293,7 @@ angular.module('flowableModeler')
                             // after next digest cycle, to prevent first false-positive
                             $scope.formLoaded = true;
                         }, 200);
-                        
+
                     }).
                     error(function (response, status, headers, config) {
                         $scope.model.loading = false;
@@ -218,7 +320,8 @@ angular.module('flowableModeler')
 				{'type': 'spacer', 'title': $translate.instant('FORM-BUILDER.PALLETTE.SPACER'), 'icon': 'images/form-builder/spacer-icon.png', 'width':1},
 				{'type': 'horizontal-line', 'title': $translate.instant('FORM-BUILDER.PALLETTE.HORIZONTAL-LINE'), 'icon': 'images/form-builder/horizontal-line-icon.png', 'width':1},
 				{'type': 'headline', 'title': $translate.instant('FORM-BUILDER.PALLETTE.HEADLINE'), 'icon': 'images/form-builder/headline-icon.png', 'width':1},
-				{'type': 'headline-with-line', 'title': $translate.instant('FORM-BUILDER.PALLETTE.HEADLINE-WITH-LINE'), 'icon': 'images/form-builder/headline-with-line-icon.png', 'width':1}
+				{'type': 'headline-with-line', 'title': $translate.instant('FORM-BUILDER.PALLETTE.HEADLINE-WITH-LINE'), 'icon': 'images/form-builder/headline-with-line-icon.png', 'width':1},
+				{'type': 'test-component', 'title': 'Test Component', 'icon': 'images/form-builder/headline-with-line-icon.png', 'width':1}
             ];
 
             $scope.$watch('formItems', function () {

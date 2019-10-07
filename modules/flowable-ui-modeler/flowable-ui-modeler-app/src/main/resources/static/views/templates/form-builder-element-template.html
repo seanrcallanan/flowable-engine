@@ -9,7 +9,7 @@
       <label class="control-label form-field-label">{{formElement.name}}</label><span class="marker" ng-if="formElement.required">*</span>
       <input type="text" class="form-control" style="cursor:default;background-color:#fff;" value="Text" disabled>
   </div>
-  
+
     <div ng-switch-when="password" class="form-group">
       <label class="control-label form-field-label">{{formElement.name}}</label><span class="marker" ng-if="formElement.required">*</span>
       <input type="text" class="form-control" style="cursor:default;background-color:#fff;" value="Password" disabled>
@@ -59,12 +59,12 @@
       <label class="control-label form-field-label">{{formElement.name}} <span class="marker" ng-if="formElement.required">*</span></label>
       <input type="number" class="form-control" style="cursor:default;background-color:#fff;" value="123" disabled>
   </div>
-  
+
   <div ng-switch-when="decimal" class="form-group">
       <label class="control-label form-field-label">{{formElement.name}} <span class="marker" ng-if="formElement.required">*</span></label>
       <input type="number" class="form-control" style="cursor:default;background-color:#fff;" value="123.12" disabled>
   </div>
-  
+
   <div ng-switch-when="dropdown" class="form-group">
     <label class="control-label form-field-label">{{formElement.name}} <span class="marker" ng-if="formElement.required">*</span></label>
     <select class="form-control" style="cursor:default;" disabled>
@@ -100,11 +100,11 @@
     <label class="control-label form-field-label">{{formElement.name}}<span class="marker" ng-if="formElement.required">*</span></label>
     <div class="message" ng-show="formElement.params.hyperlinkUrl">{{formElement.params.hyperlinkUrl}}</div>
   </div>
-  
+
   <div ng-switch-when="spacer" class="form-group">
 	<br />
   </div>
-  
+
   <div ng-switch-when="horizontal-line" class="form-group">
 	<hr>
   </div>
@@ -114,6 +114,11 @@
   </div>
 
   <div ng-switch-when="headline-with-line" class="form-group">
+	<h4><strong>{{formElement.name}} test test test</strong></h4>
+	<hr>
+  </div>
+
+  <div ng-switch-when="test-component" class="form-group">
 	<h4><strong>{{formElement.name}}</strong></h4>
 	<hr>
   </div>

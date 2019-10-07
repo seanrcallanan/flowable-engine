@@ -194,11 +194,11 @@ public class MyApplication {
         return new CommandLineRunner() {
             @Override
             public void run(String... strings) throws Exception {
-                System.out.println("Number of process definitions : " 
+                System.out.println("Number of process definitions : "
                 	+ repositoryService.createProcessDefinitionQuery().count());
                 System.out.println("Number of tasks : " + taskService.createTaskQuery().count());
                 runtimeService.startProcessInstanceByKey("oneTaskProcess");
-                System.out.println("Number of tasks after process start: " 
+                System.out.println("Number of tasks after process start: "
                     + taskService.createTaskQuery().count());
             }
         };
@@ -224,8 +224,8 @@ Number of tasks after process start : 1
 [source,linenums]
 ----
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/flowable-spring-boot?characterEncoding=UTF-8
-spring.datasource.username=flowable
-spring.datasource.password=flowable
+spring.datasource.username=root
+spring.datasource.password=password
 ----
 
 从Maven依赖中移除H2，并在classpath中添加MySQL驱动：
@@ -326,7 +326,7 @@ public class MyRestController {
             this.id = id;
             this.name = name;
         }
-        
+
         public String getId() {
             return id;
         }
@@ -958,7 +958,7 @@ public class MyConfigurer implements EngineConfigurationConfigurer<SpringProcess
     public void configure(SpringProcessEngineConfiguration processEngineConfiguration) {
         // advanced configuration
     }
-    
+
 }
 ----
 

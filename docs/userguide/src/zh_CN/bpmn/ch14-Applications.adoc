@@ -54,8 +54,8 @@ To change the default configuration to MySQL the following changes are needed to
 ----
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/flowable?characterEncoding=UTF-8
-spring.datasource.username=flowable
-spring.datasource.password=flowable
+spring.datasource.username=root
+spring.datasource.password=password
 ----
 
 This configuration will expect a flowable database to be present in the MySQL server and the UI apps will automatically generate the necessary database tables. For Postgres the following changes are necessary:
@@ -64,8 +64,8 @@ This configuration will expect a flowable database to be present in the MySQL se
 ----
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.datasource.url=jdbc:postgresql://localhost:5432/flowable
-spring.datasource.username=flowable
-spring.datasource.password=flowable
+spring.datasource.username=root
+spring.datasource.password=password
 ----
 
 In addition to changing the configuration, make sure the database driver is available on the classpath. Again, you could do this for every web application separately by adding the driver JAR file to the WEB-INF/lib folder, but you can also copy the JAR file once to the Tomcat lib folder. For MySQL and Postgres the database drivers can be downloaded from:
@@ -654,7 +654,7 @@ After saving the form model and closing the form editor, you are automatically n
 
 image::images/flowable_modeler_formoverview_screen.png[align="center"]
 
-You can preview every form definition by opening the details view of a form definition. In the details view, the form name, key and description can be edited and the history of form models is available. You can also duplicate the form definition to create a new form definition with the same form fields. 
+You can preview every form definition by opening the details view of a form definition. In the details view, the form name, key and description can be edited and the history of form models is available. You can also duplicate the form definition to create a new form definition with the same form fields.
 
 Now let's open the vacation request process model in the BPMN editor again and add a Script task to the process model, that will calculate the number of days between the vacation start and end dates. Click on the _Script format_ property and fill in a value of _groovy_ to instruct the Flowable engine to use the Groovy scripting engine. Now click on the _Script_ property and fill in the script that calculates the number of days.
 
@@ -681,7 +681,7 @@ When the DMN editor is saved and closed, the Modeler application navigates back 
 </serviceTask>
 ----
 
-With the _managerApprovalNeeded_ variable available in the process instance context, we can now create an exclusive gateway with a sequence flow condition that evaluates the calculated value of the DMN Engine. 
+With the _managerApprovalNeeded_ variable available in the process instance context, we can now create an exclusive gateway with a sequence flow condition that evaluates the calculated value of the DMN Engine.
 
 image::images/flowable_modeler_sequenceflowcondition_popup.png[align="center", width="500"]
 
@@ -738,9 +738,9 @@ This are the Modeler UI App specific properties.
 
 === Flowable Task application
 
-The Flowable Task application is the runtime application of the Flowable project and includes the Flowable BPMN, DMN, Form and Content engines by default. With the Flowable Task application, new process instances can be started, tasks can be completed, task forms can be rendered and so on. In the previous section, the vacation request app definition was deployed on the Flowable Task application REST API, and through that deployed on the Flowable engine. If you look in the Flowable database, you can see a new deployment entry has been added to the ACT_RE_DEPLOYMENT table for the BPMN Engine. Also, new entries haven been created in the ACT_DMN_DEPLOYMENT and ACT_FO_FORM_DEPLOYMENT tables for the DMN and Form engines. 
+The Flowable Task application is the runtime application of the Flowable project and includes the Flowable BPMN, DMN, Form and Content engines by default. With the Flowable Task application, new process instances can be started, tasks can be completed, task forms can be rendered and so on. In the previous section, the vacation request app definition was deployed on the Flowable Task application REST API, and through that deployed on the Flowable engine. If you look in the Flowable database, you can see a new deployment entry has been added to the ACT_RE_DEPLOYMENT table for the BPMN Engine. Also, new entries haven been created in the ACT_DMN_DEPLOYMENT and ACT_FO_FORM_DEPLOYMENT tables for the DMN and Form engines.
 
-On the dashboard on link:$$http://localhost:8080/flowable-task$$[http://localhost:8080/flowable-task], you can see a vacation request app in addition to the default Task app, and any other apps that have been deployed to the Flowable engine already. 
+On the dashboard on link:$$http://localhost:8080/flowable-task$$[http://localhost:8080/flowable-task], you can see a vacation request app in addition to the default Task app, and any other apps that have been deployed to the Flowable engine already.
 
 image::images/flowable_task_dashboard_screen.png[align="center"]
 
@@ -750,7 +750,7 @@ image::images/flowable_task_tasklist_screen.png[align="center"]
 
 When clicking on the _Processes_ tab you can choose to start a new process instance by clicking on the _Start a process_ button. The list of available process definitions within the context of this app definition is now displayed. In the general Task app this works in a similar way, but in the Task app, all process definitions deployed on the Flowable engine are shown. After selecting the vacation request process definition, the _Start process_ button can be clicked to start a new vacation request process instance.
 
-The Flowable Task application automatically navigates to the process instance details view. You can see the _Provide vacation information_ task is active and, for example, comments can be added and the process instance state can be shown diagrammatically using the _Show diagram_ button. 
+The Flowable Task application automatically navigates to the process instance details view. You can see the _Provide vacation information_ task is active and, for example, comments can be added and the process instance state can be shown diagrammatically using the _Show diagram_ button.
 
 image::images/flowable_task_processdetails_screen.png[align="center"]
 
@@ -806,11 +806,11 @@ This are the Task UI App specific properties.
 
 === Flowable Admin application
 
-The fourth UI application the Flowable project provides is the Flowable Admin application. This application provides ways to, for example, query deployments in the BPMN, DMN and Form Engines, but also shows the active state of a process instance with its active tasks and process variables. It also provides actions to assign a task to a different assignee and to complete an active task. The Flowable Admin application uses the REST API to communicate with the Flowable engines. By default, it is configured to connect to the Flowable Task REST API, but you can easily change this to use the Flowable REST app REST API instead. When going to link:$$http://localhost:8080/flowable-admin$$[http://localhost:8080/flowable-admin], the configuration screen is shown (which is also available by clicking on the arrow at the top right near the Flowable logo). 
+The fourth UI application the Flowable project provides is the Flowable Admin application. This application provides ways to, for example, query deployments in the BPMN, DMN and Form Engines, but also shows the active state of a process instance with its active tasks and process variables. It also provides actions to assign a task to a different assignee and to complete an active task. The Flowable Admin application uses the REST API to communicate with the Flowable engines. By default, it is configured to connect to the Flowable Task REST API, but you can easily change this to use the Flowable REST app REST API instead. When going to link:$$http://localhost:8080/flowable-admin$$[http://localhost:8080/flowable-admin], the configuration screen is shown (which is also available by clicking on the arrow at the top right near the Flowable logo).
 
 image:images/flowable_admin_configuration_screen.png[align="center"]
 
-For each engine, the REST endpoint can be configured with the basic authentication values. The configuration is done per engine, because it's possible to, for example, deploy the DMN Engine on a separate server from the BPMN Engine. 
+For each engine, the REST endpoint can be configured with the basic authentication values. The configuration is done per engine, because it's possible to, for example, deploy the DMN Engine on a separate server from the BPMN Engine.
 
 When the configuration is defined with the correct values, the _Process Engine_ can be selected to administer the Flowable BPMN engine. By default, the deployments of the Flowable BPMN engine are shown.
 
